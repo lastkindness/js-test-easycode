@@ -455,15 +455,21 @@ function fourthTask(person) {
   Object.defineProperties(person, {
     name: {
       get: function() {
-        console.log(person.lastGet = new Date());
+        console.log("get");
+        enumerable: true;
+        writable: true;
+        person.lastGet = new Date()
       },
       set: function(val) {
-        console.log(person.lastUpdate = new Date());
+        console.log("set");
+        enumerable: true;
+        writable: true;
+        person.lastUpdate = new Date()
       }
     }
   });
-  person.name = 'Denis2'; // Запускает сеттер, который присваивает 10 / 2 (5) свойству 'a'
-  console.log(person.name); // Запускает геттер, который возвращает a + 1 (тоесть 6)
+  person.name = 'Denis2'; // Запускает сеттер
+  console.log(person.name); // Запускает геттер
 }
 console.log(fourthTask(person));
 
