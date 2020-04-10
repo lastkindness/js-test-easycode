@@ -452,26 +452,22 @@ const person = {
 Сделать так что-бы при получении или изменении свойства name в свойствах lastGet и lastUpdate сохранялась дата последнего получения или последнего обновления соответсвенно. */
 
 function fourthTask(person) {
-  Object.defineProperties(person, {
-    name: {
-      get: function() {
-        console.log("get");
-        enumerable: true;
-        writable: true;
-        person.lastGet = new Date()
-      },
-      set: function(val) {
-        console.log("set");
-        enumerable: true;
-        writable: true;
-        person.lastUpdate = new Date()
-      }
+  Object.defineProperty(person, "update", {
+    set: function(value) {
+      this.name = value;
+      this.lastUpdate = new Date();
+      console.log(person.lastUpdate);
+    },
+    get: function() {
+      this.lastGet = new Date();
+      console.log(person.lastGet);
+      return this.lastUpdate;
     }
   });
-  person.name = 'Denis2'; // Запускает сеттер
-  console.log(person.name); // Запускает геттер
+  person.update = "Петя Иванов";
+  person.update;
 }
-console.log(fourthTask(person));
+fourthTask(person);
 
 /*5. Дан объект:*/
 const product = {
